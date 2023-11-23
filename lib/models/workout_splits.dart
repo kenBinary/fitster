@@ -29,11 +29,13 @@ class WorkoutSplit {
   String name;
   int daysOfWeek;
   List<MuscleGroup> muscleGroups;
+  List<String> targetMuscles;
 
   WorkoutSplit({
     required this.name,
     required this.daysOfWeek,
     required this.muscleGroups,
+    required this.targetMuscles,
   });
 }
 
@@ -42,10 +44,12 @@ class PushPullLegsSplit extends WorkoutSplit {
     required String name,
     required int daysOfWeek,
     required List<MuscleGroup> muscleGroups,
+    required List<String> targetMuscles,
   }) : super(
           name: name,
           daysOfWeek: daysOfWeek,
           muscleGroups: muscleGroups,
+          targetMuscles: targetMuscles,
         );
 }
 
@@ -54,10 +58,12 @@ class BroSplit extends WorkoutSplit {
     required String name,
     required int daysOfWeek,
     required List<MuscleGroup> muscleGroups,
+    required List<String> targetMuscles,
   }) : super(
           name: name,
           daysOfWeek: daysOfWeek,
           muscleGroups: muscleGroups,
+          targetMuscles: targetMuscles,
         );
 }
 
@@ -66,9 +72,11 @@ class UpperLowerSplit extends WorkoutSplit {
     required String name,
     required int daysOfWeek,
     required List<MuscleGroup> muscleGroups,
+    required List<String> targetMuscles,
   }) : super(
           name: name,
           daysOfWeek: daysOfWeek,
           muscleGroups: muscleGroups,
+          targetMuscles: targetMuscles,
         );
 }
