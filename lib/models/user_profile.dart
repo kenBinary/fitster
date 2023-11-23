@@ -5,6 +5,11 @@ class UserProfile {
   int height;
   int weight;
   int exerciseDays = 0;
+  Map<int, Map<int, int>> workoutDates = {
+    2023: {
+      11: 23,
+    },
+  };
 
   Map<String, double> weeklyCalorieBurned = {
     'Mon': 0,
