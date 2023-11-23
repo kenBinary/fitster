@@ -16,13 +16,13 @@ class UserProfile {
     'Sun': 0,
   };
 
-  UserProfile(
-    this.age,
-    this.height,
-    this.weight,
-    this.name,
-    this.skillLevel,
-  );
+  UserProfile({
+    required this.age,
+    required this.height,
+    required this.weight,
+    required this.name,
+    required this.skillLevel,
+  });
 
   String get bmi {
     return ((weight) / ((height / 100) * (height / 100))).toStringAsFixed(2);
