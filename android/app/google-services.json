@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1093226322143",
+    "project_id": "fitster-cst9",
+    "storage_bucket": "fitster-cst9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1093226322143:android:34fbf70cc552945826b16a",
+        "android_client_info": {
+          "package_name": "com.example.fitster"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjeRjJn5JITbVAuzv-UoCpss9sbY0-MIw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
