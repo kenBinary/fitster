@@ -34,7 +34,7 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.only(top: 70.0, bottom: 8.0, right: 8.0, left: 8.0),
                       child: MaterialButton(
                         onPressed: () {},
                         color: Colors.white,
