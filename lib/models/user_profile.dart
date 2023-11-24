@@ -5,8 +5,13 @@ class UserProfile {
   int height;
   int weight;
   int exerciseDays = 0;
+  Map<int, Map<int, int>> _workoutDates = {
+    2023: {
+      11: 23,
+    },
+  };
 
-  Map<String, double> weeklyCalorieBurned = {
+  Map<String, double> _weeklyCalorieBurned = {
     'Mon': 0,
     'Tue': 0,
     'Wed': 0,
@@ -16,13 +21,13 @@ class UserProfile {
     'Sun': 0,
   };
 
-  UserProfile(
-    this.age,
-    this.height,
-    this.weight,
-    this.name,
-    this.skillLevel,
-  );
+  UserProfile({
+    required this.age,
+    required this.height,
+    required this.weight,
+    required this.name,
+    required this.skillLevel,
+  });
 
   String get bmi {
     return ((weight) / ((height / 100) * (height / 100))).toStringAsFixed(2);
@@ -33,6 +38,27 @@ class UserProfile {
   }
 
   void updateCalorieBurned(String key, double value) {
-    weeklyCalorieBurned[key] = value;
+    _weeklyCalorieBurned[key] = value;
+  }
+
+  void workoutDataInitialize(
+    Map<int, Map<int, int>> workoutDates,
+    Map<String, double> weeklyCaloriesBurned,
+  ) {
+    _workoutDates = workoutDates;
+    _weeklyCalorieBurned = weeklyCaloriesBurned;
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'skill_level': skillLevel,
+      'age': age,
+      'height': height,
+      'weight': weight,
+      'exercise_days': exerciseDays,
+      'workout_dates': _workoutDates,
+      'weekly_calories_burned': _weeklyCalorieBurned,
+    };
   }
 }

@@ -1,0 +1,38 @@
+{
+    "upper-lower split": {
+        "day 1: upper body": {
+            "bench press": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "overhead press": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "triceps pushdowns": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            }
+        },
+        "day 2: lower body": {
+            "squats": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "deadlifts": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "leg press": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            }
+        }
+    }
+}

@@ -1,0 +1,89 @@
+{
+    "bro split": {
+        "day 1: chest": {
+            "barbell bench press": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "incline dumbbell press": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "triceps pushdowns": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            }
+        },
+        "day 2: back": {
+            "pull-ups": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "barbell rows": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "hammer curls": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            }
+        },
+        "day 3: shoulders": {
+            "military press": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "lateral raises": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "shrugs": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            }
+        },
+        "day 4: legs": {
+            "squats": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "leg press": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "calf raises": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            }
+        },
+        "day 5: arms": {
+            "barbell curls": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "dumbbell curls": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            },
+            "hammer curls": {
+                "sets": 3,
+                "reps": 12,
+                "rest": 90
+            }
+        }
+    }
+}
