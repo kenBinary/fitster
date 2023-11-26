@@ -1,73 +1,53 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const ProfileDashboard(),
-    );
-  }
-}
-
-Card _vitalCards(
-    {required String vitalType,
-    required String vitalValue,
-    required double fontSize}) {
-  return Card(
-    child: Padding(
-      padding: const EdgeInsets.all(8),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            vitalType,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+class ProfileDashboard extends StatelessWidget {
+  const ProfileDashboard({super.key});
+  Card _vitalCards(
+      {required String vitalType,
+      required String vitalValue,
+      required double fontSize}) {
+    return Card(
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              vitalType,
+              style: const TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          Expanded(
-            child: Center(
-              child: AspectRatio(
-                aspectRatio: 1 / 1,
-                child: Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(1000),
+            Expanded(
+              child: Center(
+                child: AspectRatio(
+                  aspectRatio: 1 / 1,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(1000),
+                      ),
+                      color: Colors.blue,
                     ),
-                    color: Colors.blue,
-                  ),
-                  child: Center(
-                    child: Text(
-                      vitalValue,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: fontSize,
+                    child: Center(
+                      child: Text(
+                        vitalValue,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: fontSize,
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
-    ),
-  );
-}
-
-class ProfileDashboard extends StatelessWidget {
-  const ProfileDashboard({super.key});
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,16 +103,18 @@ class ProfileDashboard extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: _vitalCards(vitalType: 'Age', vitalValue: '23',fontSize: 20),
+                    child: _vitalCards(
+                        vitalType: 'Age', vitalValue: '23', fontSize: 20),
                   ),
                   Expanded(
                     flex: 1,
-                    child: _vitalCards(vitalType: 'Weight', vitalValue: '70kg',fontSize: 20),
+                    child: _vitalCards(
+                        vitalType: 'Weight', vitalValue: '70kg', fontSize: 20),
                   ),
                   Expanded(
                     flex: 1,
-                    child:
-                        _vitalCards(vitalType: 'Height', vitalValue: '1.73m',fontSize: 20),
+                    child: _vitalCards(
+                        vitalType: 'Height', vitalValue: '1.73m', fontSize: 20),
                   ),
                 ],
               ),
@@ -144,11 +126,15 @@ class ProfileDashboard extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 1,
-                    child: _vitalCards(vitalType: 'BMI', vitalValue: '23',fontSize: 30),
+                    child: _vitalCards(
+                        vitalType: 'BMI', vitalValue: '23', fontSize: 30),
                   ),
                   Expanded(
                     flex: 1,
-                    child: _vitalCards(vitalType: 'Exercise Days', vitalValue: '70kg',fontSize: 30),
+                    child: _vitalCards(
+                        vitalType: 'Exercise Days',
+                        vitalValue: '70kg',
+                        fontSize: 30),
                   ),
                 ],
               ),
