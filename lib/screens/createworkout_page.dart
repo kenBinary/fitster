@@ -77,86 +77,86 @@ class _creatworkout_pageState extends State<creatworkout_page> {
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(0.0),
+                padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(15.0),
                       topRight: Radius.circular(15.0),
                       bottomLeft: Radius.circular(15.0),
                       bottomRight: Radius.circular(15.0)),
-                  child: Container(
-                    color: const Color(0xFF9AB8F9),
-                    width: 350,
-                    height: 40,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment
-                          .spaceEvenly, 
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              MaterialButton(
-                                onPressed: () {
-                                  setState(() {
-                                    selectedButton = 'Beginner';
-                                  });
-                                },
-                                color: selectedButton == 'Beginner'
-                                    ? const Color(0xfffbfbad)
-                                    : Colors.white,
-                                minWidth: 40,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
+                  child: Expanded(
+                    child: Container(
+                      color: const Color(0xFF9AB8F9),
+                      height: 40,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                MaterialButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      selectedButton = 'Beginner';
+                                    });
+                                  },
+                                  color: selectedButton == 'Beginner'
+                                      ? const Color(0xfffbfbad)
+                                      : Colors.white,
+                                  minWidth: 40,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: const Text(
+                                    'Beginner',
+                                    style: TextStyle(fontSize: 13),
+                                  ),
                                 ),
-                                child: const Text(
-                                  'Beginner',
-                                  style: TextStyle(fontSize: 13),
+                                const SizedBox(width: 30),
+                                MaterialButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      selectedButton = 'Intermediate';
+                                    });
+                                  },
+                                  color: selectedButton == 'Intermediate'
+                                      ? const Color(0xfffbfbad)
+                                      : Colors.white,
+                                  minWidth: 40,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: const Text(
+                                    'Intermediate',
+                                    style: TextStyle(fontSize: 13),
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(width: 30),
-                              MaterialButton(
-                                onPressed: () {
-                                  setState(() {
-                                    selectedButton = 'Intermediate';
-                                  });
-                                },
-                                color: selectedButton == 'Intermediate'
-                                    ? const Color(0xfffbfbad)
-                                    : Colors.white,
-                                minWidth: 40,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
+                                const SizedBox(width: 30),
+                                MaterialButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      selectedButton = 'Advanced';
+                                    });
+                                  },
+                                  color: selectedButton == 'Advanced'
+                                      ? const Color(0xfffbfbad)
+                                      : Colors.white,
+                                  minWidth: 40,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                  ),
+                                  child: const Text(
+                                    'Advanced',
+                                    style: TextStyle(fontSize: 13),
+                                  ),
                                 ),
-                                child: const Text(
-                                  'Intermediate',
-                                  style: TextStyle(fontSize: 13),
-                                ),
-                              ),
-                              const SizedBox(width: 30),
-                              MaterialButton(
-                                onPressed: () {
-                                  setState(() {
-                                    selectedButton = 'Advanced';
-                                  });
-                                },
-                                color: selectedButton == 'Advanced'
-                                    ? const Color(0xfffbfbad)
-                                    : Colors.white,
-                                minWidth: 40,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(20.0),
-                                ),
-                                child: const Text(
-                                  'Advanced',
-                                  style: TextStyle(fontSize: 13),
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -227,8 +227,8 @@ class _creatworkout_pageState extends State<creatworkout_page> {
                       MaterialButton(
                         onPressed: () {},
                         child: Container(
-                          width: 50.0,
-                          height: 50.0,
+                          width: 60.0,
+                          height: 60.0,
                           decoration: const BoxDecoration(
                             color: Color(0xFF9AB8F9),
                             shape: BoxShape.circle,
@@ -295,7 +295,7 @@ class _creatworkout_pageState extends State<creatworkout_page> {
                     padding:
                         EdgeInsets.only(top: 5.0, bottom: 8.0, right: 80.0),
                     child: Text(
-                      'Select your workout split',
+                      'Enter your vital details',
                       style: TextStyle(fontFamily: 'Grotesco', fontSize: 20.0),
                     ),
                   ),
@@ -304,7 +304,7 @@ class _creatworkout_pageState extends State<creatworkout_page> {
               const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Align(
-                  alignment: Alignment.centerLeft, 
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     'Age',
                   ),
@@ -312,32 +312,31 @@ class _creatworkout_pageState extends State<creatworkout_page> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 30,
-                  width: 400, 
-                  child: TextField(
-                    cursorColor: const Color(0xFF9AB8F9),
-                    controller: textController1,
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xfffbfbad),
-                      hintText: 'What is your Age?',
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(
-                        vertical:
-                            10, 
-                        horizontal:
-                            20, 
+                child: Expanded(
+                  child: SizedBox(
+                    height: 30,
+                    child: TextField(
+                      cursorColor: const Color(0xFF9AB8F9),
+                      controller: textController1,
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xfffbfbad),
+                        hintText: 'What is your Age?',
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 20,
+                        ),
                       ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Align(
-                  alignment: Alignment.centerLeft, 
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     'Height',
                   ),
@@ -345,32 +344,31 @@ class _creatworkout_pageState extends State<creatworkout_page> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 30,
-                  width: 400, 
-                  child: TextField(
-                    cursorColor: const Color(0xFF9AB8F9),
-                    controller: textController2,
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xfffbfbad),
-                      hintText: 'What is your height?',
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(
-                        vertical:
-                            10, 
-                        horizontal:
-                            20, 
+                child: Expanded(
+                  child: SizedBox(
+                    height: 30,
+                    child: TextField(
+                      cursorColor: const Color(0xFF9AB8F9),
+                      controller: textController2,
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xfffbfbad),
+                        hintText: 'What is your height?',
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 20,
+                        ),
                       ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 10),
                 child: Align(
-                  alignment: Alignment.centerLeft, 
+                  alignment: Alignment.centerLeft,
                   child: Text(
                     'Weight',
                   ),
@@ -378,49 +376,47 @@ class _creatworkout_pageState extends State<creatworkout_page> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: SizedBox(
-                  height: 30,
-                  width: 400, 
-                  child: TextField(
-                    cursorColor: const Color(0xFF9AB8F9),
-                    controller: textController3,
-                    decoration: const InputDecoration(
-                      filled: true,
-                      fillColor: Color(0xfffbfbad),
-                      hintText: 'What is your Weight?',
-                      border: OutlineInputBorder(),
-                      contentPadding: EdgeInsets.symmetric(
-                        vertical:
-                            10, 
-                        horizontal:
-                            20, 
+                child: Expanded(
+                  child: SizedBox(
+                    height: 30,
+                    child: TextField(
+                      cursorColor: const Color(0xFF9AB8F9),
+                      controller: textController3,
+                      decoration: const InputDecoration(
+                        filled: true,
+                        fillColor: Color(0xfffbfbad),
+                        hintText: 'What is your Weight?',
+                        border: OutlineInputBorder(),
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 20,
+                        ),
                       ),
+                      textAlign: TextAlign.center,
                     ),
-                    textAlign: TextAlign.center,
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(100.0),
                   child: Expanded(
-                  child: MaterialButton(onPressed: (){},
-                child: Container(
-                  width: 400,
-                  height: 30,
-                  color: const Color(0xFF9AB8F9),
-                  child: const Align(
-                  alignment: Alignment.center, 
-                  child: Text(
-                    'Submit',
+                    child: MaterialButton(
+                      onPressed: () {},
+                      child: Container(
+                        height: 30,
+                        color: const Color(0xFF9AB8F9),
+                        child: const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            'Submit',
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-                ),
-                ),
-                ),
-                )
               ),
             ],
           ),
