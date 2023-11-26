@@ -1,5 +1,4 @@
 import 'package:fitster/screens/createworkout_page.dart';
-import 'package:fitster/screens/loginpage.dart';
 import 'package:flutter/material.dart';
 
 void main() {

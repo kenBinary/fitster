@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -155,7 +154,7 @@ class ProfileDashboard extends StatelessWidget {
               ),
             ),
             const Text(
-              "Calories Burned This Week",
+              'Calories Burned This Week',
               textAlign: TextAlign.end,
               style: TextStyle(
                 fontSize: 22,
