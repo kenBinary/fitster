@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class creatworkout_page extends StatefulWidget {
-  const creatworkout_page({super.key, required String title});
+class CreateWorkoutPage extends StatefulWidget {
+  const CreateWorkoutPage({super.key, required String title});
 
   @override
-  State<creatworkout_page> createState() => _creatworkout_pageState();
+  State<CreateWorkoutPage> createState() => _CreateWorkoutPageState();
 }
 
-class _creatworkout_pageState extends State<creatworkout_page> {
+class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
   final textController1 = TextEditingController();
   final textController2 = TextEditingController();
   final textController3 = TextEditingController();
