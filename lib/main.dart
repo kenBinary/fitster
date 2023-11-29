@@ -1,7 +1,6 @@
 import 'package:fitster/screens/createworkout_page.dart';
 import 'package:fitster/screens/profile_dashboard.dart';
 import 'package:fitster/screens/workout_tracker.dart';
-import 'package:fitster/services/workout_plan_builder.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -31,14 +30,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle = TextStyle(
-    fontSize: 30,
-    fontWeight: FontWeight.bold,
-  );
   static const List<Widget> _widgetOptions = <Widget>[
     ProfileDashboard(),
-    creatworkout_page(title: "test"),
-    Text("test"),
+    CreateWorkoutPage(),
+    Text('test'),
     WorkoutTracker(),
   ];
 
