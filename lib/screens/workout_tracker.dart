@@ -28,145 +28,143 @@ class WorkoutTracker extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              'Calendar',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Calendar',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
             ),
-            Expanded(
-              flex: 2,
-              child: Container(
-                height: 100,
-                color: Colors.amberAccent,
-              ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Container(
+              height: 100,
+              color: Colors.amberAccent,
             ),
-            const SizedBox(
-              height: 5,
-              width: 5,
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                padding: const EdgeInsets.all(6),
-                color: HexColor('#FBFBAD'),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Today\'s Training Volume',
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+          ),
+          const SizedBox(
+            height: 5,
+            width: 5,
+          ),
+          Expanded(
+            flex: 1,
+            child: Container(
+              padding: const EdgeInsets.all(6),
+              color: HexColor('#FBFBAD'),
+              child: Column(
+                children: [
+                  const Text(
+                    'Today\'s Training Volume',
+                    style: TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
-                    Expanded(
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Card(
-                              color: HexColor('#9AB8F9'),
-                              child: const Center(
-                                child: Text(
-                                  '15 Sets',
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                  ),
+                  Expanded(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Expanded(
+                          flex: 1,
+                          child: Card(
+                            color: HexColor('#9AB8F9'),
+                            child: const Center(
+                              child: Text(
+                                '15 Sets',
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            width: 10,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Card(
+                            color: HexColor('#9AB8F9'),
+                            child: const Center(
+                              child: Text(
+                                '15 Sets',
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 5,
+            width: 5,
+          ),
+          Expanded(
+            flex: 3,
+            child: Container(
+              color: Colors.greenAccent,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      color: Colors.amberAccent,
+                    ),
+                  ),
+                  Expanded(
+                    child: Container(
+                      color: HexColor('#FBFBAD'),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          const Padding(
+                            padding: EdgeInsets.all(5),
+                            child: Center(
+                              child: Text(
+                                'Target Muscles',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
                           ),
                           Expanded(
-                            flex: 1,
-                            child: Card(
-                              color: HexColor('#9AB8F9'),
-                              child: const Center(
-                                child: Text(
-                                  '15 Sets',
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
+                            child: SingleChildScrollView(
+                              scrollDirection: Axis.vertical,
+                              child: Column(
+                                children: [
+                                  _targetMuscleCard('Back'),
+                                  _targetMuscleCard('Chest'),
+                                  _targetMuscleCard('Biceps'),
+                                  _targetMuscleCard('Biceps'),
+                                  _targetMuscleCard('Biceps'),
+                                ],
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            const SizedBox(
-              height: 5,
-              width: 5,
-            ),
-            Expanded(
-              flex: 3,
-              child: Container(
-                color: Colors.greenAccent,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        color: Colors.amberAccent,
-                      ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        color: HexColor('#FBFBAD'),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            const Padding(
-                              padding: EdgeInsets.all(5),
-                              child: Center(
-                                child: Text(
-                                  'Target Muscles',
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: SingleChildScrollView(
-                                scrollDirection: Axis.vertical,
-                                child: Column(
-                                  children: [
-                                    _targetMuscleCard('Back'),
-                                    _targetMuscleCard('Chest'),
-                                    _targetMuscleCard('Biceps'),
-                                    _targetMuscleCard('Biceps'),
-                                    _targetMuscleCard('Biceps'),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
