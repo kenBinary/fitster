@@ -1,114 +1,204 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key, required String title});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController userEmailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
+  Padding _signInButton({
+    required Function onPressedCallback,
+    required String imagePath,
+    required String buttonText,
+    required Color buttonColor,
+    required Color textColor,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(
+        top: 4,
+        bottom: 4,
+      ),
+      child: MaterialButton(
+        onPressed: () {
+          onPressedCallback();
+        },
+        shape: const OutlineInputBorder(),
+        color: buttonColor,
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Expanded(
+              flex: 2,
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: Image.asset(
+                  imagePath,
+                  height: 30,
+                  width: 30,
+                ),
+              ),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Expanded(
+              flex: 3,
+              child: Text(
+                buttonText,
+                style: TextStyle(
+                  color: textColor,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(0.0),
+          padding: const EdgeInsets.all(8),
           child: Column(
             children: [
-              Image.asset(
-                '../lib/images/Fitser_Logo.png',
-                width: 300.0,
-                height: 250.0,
+              Expanded(
+                flex: 3,
+                child: Image.asset(
+                  '../lib/images/Fitser_Logo.png',
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.all(1.0),
                 child: Text(
                   'Fitser',
-                  style: TextStyle(fontSize: 40.0, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.all(1.0),
                 child: Text(
                   'Workout Planner and Tracker',
-                  style: TextStyle(fontSize: 15.0, fontStyle: FontStyle.italic),
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontStyle: FontStyle.italic,
+                  ),
                 ),
               ),
-              Center(
-                child: Column(
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  bottom: 10,
+                ),
+                child: Row(
                   children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 70.0, bottom: 8.0, right: 8.0, left: 8.0),
-                      child: MaterialButton(
-                        onPressed: () {},
-                        color: Colors.white,
-                        height: 50,
-                        minWidth: 300,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('../lib/images/G_Logo.png',
-                                height: 30, width: 30),
-                            const SizedBox(width: 15),
-                            const Text('Sign in with Google'),
-                          ],
-                        ),
+                    const Text(
+                      'Don\'t have an account?',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MaterialButton(
-                        onPressed: () {},
-                        color: Colors.black,
-                        height: 50,
-                        minWidth: 300,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('../lib/images/X_Logo.png',
-                                height: 30, width: 30),
-                            const SizedBox(width: 15),
-                            const Text('Sign in with Twitter',
-                                style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                      ),
+                    const SizedBox(
+                      width: 5,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MaterialButton(
-                        onPressed: () {},
-                        color: Colors.redAccent,
-                        height: 50,
-                        minWidth: 300,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('../lib/images/E_Logo.png',
-                                height: 30, width: 30),
-                            const SizedBox(width: 15),
-                            const Text('Sign in with Email',
-                                style: TextStyle(color: Colors.white)),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: MaterialButton(
-                        onPressed: () {},
-                        color: Colors.blueAccent,
-                        height: 50,
-                        minWidth: 300,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Image.asset('../lib/images/F_Logo.png',
-                                height: 30, width: 30),
-                            const SizedBox(width: 15),
-                            const Text('Sign in with Facebook',
-                                style: TextStyle(color: Colors.white)),
-                          ],
+                    GestureDetector(
+                      onTap: () {},
+                      child: Text(
+                        'Register',
+                        style: TextStyle(
+                          color: HexColor('#9AB8F9'),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
                       ),
                     ),
                   ],
+                ),
+              ),
+              Expanded(
+                child: TextField(
+                  controller: userEmailController,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: HexColor('#FBFBAD'),
+                    hintText: 'Enter Your Email',
+                    border: const OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 3,
+              ),
+              Expanded(
+                child: TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: HexColor('#FBFBAD'),
+                    hintText: 'Enter Your Password',
+                    border: const OutlineInputBorder(),
+                  ),
+                ),
+              ),
+              Expanded(
+                child: _signInButton(
+                  onPressedCallback: () {},
+                  imagePath: '../lib/images/G_Logo.png',
+                  buttonText: 'Sign In With Email',
+                  buttonColor: Colors.white,
+                  textColor: Colors.black,
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Expanded(
+                child: _signInButton(
+                  onPressedCallback: () {},
+                  imagePath: '../lib/images/G_Logo.png',
+                  buttonText: 'Sign In With Google',
+                  buttonColor: Colors.white,
+                  textColor: Colors.black,
+                ),
+              ),
+              Expanded(
+                child: _signInButton(
+                  onPressedCallback: () {},
+                  imagePath: '../lib/images/X_Logo.png',
+                  buttonText: 'Sign In With Twitter',
+                  buttonColor: Colors.black,
+                  textColor: Colors.white,
+                ),
+              ),
+              Expanded(
+                child: _signInButton(
+                  onPressedCallback: () {},
+                  imagePath: '../lib/images/E_Logo.png',
+                  buttonText: 'Sign In With GitHub',
+                  buttonColor: Colors.white,
+                  textColor: Colors.black,
+                ),
+              ),
+              Expanded(
+                child: _signInButton(
+                  onPressedCallback: () {},
+                  imagePath: '../lib/images/F_Logo.png',
+                  buttonText: 'Sign In With Facebook',
+                  buttonColor: Colors.blueAccent,
+                  textColor: Colors.white,
                 ),
               ),
             ],
