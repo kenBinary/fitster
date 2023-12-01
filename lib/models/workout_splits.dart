@@ -10,6 +10,15 @@ class Exercise {
     required this.reps,
     required this.restTime,
   });
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'sets': sets,
+      'reps': reps,
+      'rest_time': restTime,
+    };
+  }
 }
 
 class MuscleGroup {
@@ -23,6 +32,17 @@ class MuscleGroup {
   void addExercise(Exercise exercise) {}
 
   void removeExercise(Exercise exercise) {}
+
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> exerciseList = [];
+    for (Exercise exercise in exercises) {
+      exerciseList.add(exercise.toJson());
+    }
+    return {
+      'group': group,
+      'exercises': exerciseList,
+    };
+  }
 }
 
 class WorkoutSplit {
@@ -37,6 +57,22 @@ class WorkoutSplit {
     required this.muscleGroups,
     required this.targetMuscles,
   });
+
+  Map<String, dynamic> toJson() {
+    List<Map<String, dynamic>> muscleGroupList = [];
+    for (MuscleGroup muscleGroup in muscleGroups) {
+      muscleGroupList.add(muscleGroup.toJson());
+    }
+    Map<String, dynamic> myMap = {
+      'workout_split': {
+        'days_of_week': '7',
+        'name': 'bro_split',
+        'target_muscles': targetMuscles,
+      },
+      'muscle_group': muscleGroupList,
+    };
+    return myMap;
+  }
 }
 
 class PushPullLegsSplit extends WorkoutSplit {
