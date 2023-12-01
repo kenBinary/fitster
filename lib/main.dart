@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitster/screens/createworkout_page.dart';
 import 'package:fitster/screens/loginpage.dart';
 import 'package:fitster/screens/profile_dashboard.dart';
+import 'package:fitster/screens/view_workout_scree.dart';
 import 'package:fitster/screens/workout_tracker.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -52,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
   static const List<Widget> _widgetOptions = <Widget>[
     ProfileDashboard(),
     CreateWorkoutPage(),
-    Text('test'),
+    ViewWorkout(),
     WorkoutTracker(),
   ];
 

@@ -1,3 +1,4 @@
+import 'package:fitster/services/auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -155,7 +156,15 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Expanded(
                 child: _signInButton(
-                  onPressedCallback: () {},
+                  onPressedCallback: () async {
+                    String test = await loginWithEmail(
+                      email: userEmailController.text,
+                      password: passwordController.text,
+                    );
+                    if (test == 'login success' && mounted) {
+                      Navigator.pushNamed(context, '/main');
+                    }
+                  },
                   imagePath: '../lib/images/G_Logo.png',
                   buttonText: 'Sign In With Email',
                   buttonColor: Colors.white,

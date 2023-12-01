@@ -78,6 +78,8 @@ flutter:
     - lib/images/BS_logo.png
     - lib/images/C_logo.png
     - lib/images/R_Person.jpg
+    - lib/images/Pull_Person.png
+    - lib/images/Legs_Person.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
