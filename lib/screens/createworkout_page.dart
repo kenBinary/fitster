@@ -1,3 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitster/models/workout_splits.dart';
+import 'package:fitster/services/db_operations.dart';
+import 'package:fitster/services/workout_plan_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -8,13 +12,113 @@ class CreateWorkoutPage extends StatefulWidget {
   State<CreateWorkoutPage> createState() => _CreateWorkoutPageState();
 }
 
+MaterialButton fitnessLevelButton({
+  required String selectedButton,
+  required String text,
+  required Function setFitnessLevel,
+}) {
+  return MaterialButton(
+    onPressed: () {
+      setFitnessLevel();
+    },
+    color: selectedButton == text ? const Color(0xfffbfbad) : Colors.white,
+    minWidth: 40,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20.0),
+    ),
+    child: Text(
+      text,
+      style: const TextStyle(fontSize: 13),
+    ),
+  );
+}
+
+Column splitSelectorButton({
+  required String imagePath,
+  required String text,
+  required Function setSelectedSplit,
+}) {
+  return Column(
+    children: [
+      MaterialButton(
+        onPressed: () {
+          setSelectedSplit();
+        },
+        child: Container(
+          width: 60.0,
+          height: 60.0,
+          decoration: const BoxDecoration(
+            color: Color(0xFF9AB8F9),
+            shape: BoxShape.circle,
+          ),
+          child: Center(
+            child: Image.asset(
+              imagePath,
+              height: 40.0,
+              width: 40.0,
+            ),
+          ),
+        ),
+      ),
+      const SizedBox(height: 8.0),
+      Text(text),
+    ],
+  );
+}
+
+Padding inputLabel({required String text}) {
+  return Padding(
+    padding: const EdgeInsets.only(left: 10),
+    child: Align(
+      alignment: Alignment.centerLeft,
+      child: Text(
+        text,
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    ),
+  );
+}
+
+Expanded inputField({
+  required TextEditingController controller,
+  required String hintText,
+}) {
+  return Expanded(
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SizedBox(
+        height: 40,
+        child: TextField(
+          cursorColor: const Color(0xFF9AB8F9),
+          controller: controller,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: const Color(0xfffbfbad),
+            hintText: hintText,
+            border: const OutlineInputBorder(),
+            contentPadding: const EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 20,
+            ),
+          ),
+          textAlign: TextAlign.center,
+        ),
+      ),
+    ),
+  );
+}
+
 class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
-  final textController1 = TextEditingController();
-  final textController2 = TextEditingController();
-  final textController3 = TextEditingController();
+  final ageFieldController = TextEditingController();
+  final heightFieldController = TextEditingController();
+  final weightFieldController = TextEditingController();
 
   String userName = ' ';
-  String selectedButton = '';
+  String fitnessLevel = '';
+  String selectedSplit = '';
 
   List<String> userGoal = [
     'Lose Weight',
@@ -58,78 +162,48 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
               children: [
                 Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: HexColor('#9AB8F9')),
+                    borderRadius: BorderRadius.circular(20),
+                    color: HexColor('#9AB8F9'),
+                  ),
                   child: Padding(
                     padding: const EdgeInsets.all(6),
                     child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Expanded(
-                          child: MaterialButton(
-                            onPressed: () {
-                              setState(() {
-                                selectedButton = 'Beginner';
-                              });
-                            },
-                            color: selectedButton == 'Beginner'
-                                ? const Color(0xfffbfbad)
-                                : Colors.white,
-                            minWidth: 40,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            child: const Text(
-                              'Beginner',
-                              style: TextStyle(fontSize: 13),
-                            ),
-                          ),
+                          child: fitnessLevelButton(
+                              selectedButton: fitnessLevel,
+                              text: 'Beginner',
+                              setFitnessLevel: () {
+                                setState(() {
+                                  fitnessLevel = 'Beginner';
+                                });
+                              }),
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         Expanded(
-                          child: MaterialButton(
-                            onPressed: () {
-                              setState(() {
-                                selectedButton = 'Intermediate';
-                              });
-                            },
-                            color: selectedButton == 'Intermediate'
-                                ? const Color(0xfffbfbad)
-                                : Colors.white,
-                            minWidth: 40,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            child: const Text(
-                              'Intermediate',
-                              style: TextStyle(fontSize: 13),
-                            ),
-                          ),
+                          child: fitnessLevelButton(
+                              selectedButton: fitnessLevel,
+                              text: 'Intermediate',
+                              setFitnessLevel: () {
+                                setState(() {
+                                  fitnessLevel = 'Intermediate';
+                                });
+                              }),
                         ),
                         const SizedBox(
                           width: 10,
                         ),
                         Expanded(
-                          child: MaterialButton(
-                            onPressed: () {
-                              setState(() {
-                                selectedButton = 'Advanced';
-                              });
-                            },
-                            color: selectedButton == 'Advanced'
-                                ? const Color(0xfffbfbad)
-                                : Colors.white,
-                            minWidth: 40,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20.0),
-                            ),
-                            child: const Text(
-                              'Advanced',
-                              style: TextStyle(fontSize: 13),
-                            ),
-                          ),
+                          child: fitnessLevelButton(
+                              selectedButton: fitnessLevel,
+                              text: 'Advanced',
+                              setFitnessLevel: () {
+                                setState(() {
+                                  fitnessLevel = 'Advanced';
+                                });
+                              }),
                         ),
                       ],
                     ),
@@ -203,77 +277,32 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Column(
-                  children: [
-                    MaterialButton(
-                      onPressed: () {},
-                      child: Container(
-                        width: 60.0,
-                        height: 60.0,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF9AB8F9),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            '../lib/images/C_Logo.png',
-                            height: 40.0,
-                            width: 40.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8.0),
-                    const Text('Bro Split'),
-                  ],
+                splitSelectorButton(
+                  imagePath: '../lib/images/C_Logo.png',
+                  text: 'Bro Split',
+                  setSelectedSplit: () {
+                    setState(() {
+                      selectedSplit = 'bro_split';
+                    });
+                  },
                 ),
-                Column(
-                  children: [
-                    MaterialButton(
-                      onPressed: () {},
-                      child: Container(
-                        width: 60.0,
-                        height: 60.0,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF9AB8F9),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            '../lib/images/BS_Logo.png',
-                            height: 40.0,
-                            width: 40.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8.0),
-                    const Text('Push-Pull-Legs'),
-                  ],
+                splitSelectorButton(
+                  imagePath: '../lib/images/BS_Logo.png',
+                  text: 'Push-Pull-Legs',
+                  setSelectedSplit: () {
+                    setState(() {
+                      selectedSplit = 'push_pull_legs';
+                    });
+                  },
                 ),
-                Column(
-                  children: [
-                    MaterialButton(
-                      onPressed: () {},
-                      child: Container(
-                        width: 60.0,
-                        height: 60.0,
-                        decoration: const BoxDecoration(
-                          color: Color(0xFF9AB8F9),
-                          shape: BoxShape.circle,
-                        ),
-                        child: Center(
-                          child: Image.asset(
-                            '../lib/images/FL_Logo.png',
-                            height: 40.0,
-                            width: 40.0,
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 8.0),
-                    const Text('Upper-Lower'),
-                  ],
+                splitSelectorButton(
+                  imagePath: '../lib/images/FL_Logo.png',
+                  text: 'Upper-Lower',
+                  setSelectedSplit: () {
+                    setState(() {
+                      selectedSplit = 'upper_lower';
+                    });
+                  },
                 ),
               ],
             ),
@@ -292,117 +321,43 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
               ),
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Age',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
+          inputLabel(text: 'Age'),
+          inputField(
+            controller: ageFieldController,
+            hintText: 'What is your Age?',
           ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 40,
-                child: TextField(
-                  cursorColor: const Color(0xFF9AB8F9),
-                  controller: textController1,
-                  decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xfffbfbad),
-                    hintText: 'What is your Age?',
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
-                    ),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+          inputLabel(text: 'Height'),
+          inputField(
+            controller: heightFieldController,
+            hintText: 'What is your Height?',
           ),
-          const Padding(
-            padding: EdgeInsets.only(left: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Height',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 40,
-                child: TextField(
-                  cursorColor: const Color(0xFF9AB8F9),
-                  controller: textController2,
-                  decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xfffbfbad),
-                    hintText: 'What is your height?',
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
-                    ),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 10),
-            child: Align(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                'Weight',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                height: 40,
-                child: TextField(
-                  cursorColor: const Color(0xFF9AB8F9),
-                  controller: textController3,
-                  decoration: const InputDecoration(
-                    filled: true,
-                    fillColor: Color(0xfffbfbad),
-                    hintText: 'What is your Weight?',
-                    border: OutlineInputBorder(),
-                    contentPadding: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 20,
-                    ),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
+          inputLabel(text: 'Weight'),
+          inputField(
+            controller: weightFieldController,
+            hintText: 'What is your Weight?',
           ),
           Expanded(
             child: MaterialButton(
-              onPressed: () {},
+              onPressed: () async {
+                if (FirebaseAuth.instance.currentUser != null) {
+                  String? userId = FirebaseAuth.instance.currentUser?.uid;
+                  WorkoutSplit mySplit = await createWorkoutPlan(selectedSplit);
+                  await addSplitToFirestore(
+                    docId: userId,
+                    jsonData: mySplit.toJson(),
+                  );
+                  await addUserInformationToFirestore(
+                    docId: userId,
+                    jsonData: {
+                      'fitness_level': fitnessLevel,
+                      'fitness_goals': dropDownValue,
+                      'age': ageFieldController.text,
+                      'height': heightFieldController.text,
+                      'weight': weightFieldController.text,
+                    },
+                  );
+                } else {}
+              },
               child: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(13)),
                 child: Container(

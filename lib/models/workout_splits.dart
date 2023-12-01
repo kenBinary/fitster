@@ -66,7 +66,7 @@ class WorkoutSplit {
     Map<String, dynamic> myMap = {
       'workout_split': {
         'days_of_week': '7',
-        'name': 'bro_split',
+        'name': name,
         'target_muscles': targetMuscles,
       },
       'muscle_group': muscleGroupList,
