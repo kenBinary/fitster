@@ -1,6 +1,6 @@
 {
     "bro split": {
-        "day 1: chest": {
+        "chest": {
             "barbell bench press": {
                 "sets": 3,
                 "reps": 12,
@@ -17,7 +17,7 @@
                 "rest": 90
             }
         },
-        "day 2: back": {
+        "back": {
             "pull-ups": {
                 "sets": 3,
                 "reps": 12,
@@ -34,7 +34,7 @@
                 "rest": 90
             }
         },
-        "day 3: shoulders": {
+        "shoulders": {
             "military press": {
                 "sets": 3,
                 "reps": 12,
@@ -51,7 +51,7 @@
                 "rest": 90
             }
         },
-        "day 4: legs": {
+        "legs": {
             "squats": {
                 "sets": 3,
                 "reps": 12,
@@ -68,7 +68,7 @@
                 "rest": 90
             }
         },
-        "day 5: arms": {
+        "arms": {
             "barbell curls": {
                 "sets": 3,
                 "reps": 12,

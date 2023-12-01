@@ -1,6 +1,6 @@
 {
     "upper-lower split": {
-        "day 1: upper body": {
+        "upper body": {
             "bench press": {
                 "sets": 3,
                 "reps": 12,
@@ -17,7 +17,7 @@
                 "rest": 90
             }
         },
-        "day 2: lower body": {
+        "lower body": {
             "squats": {
                 "sets": 3,
                 "reps": 12,

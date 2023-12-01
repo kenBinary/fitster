@@ -1,6 +1,6 @@
 {
     "push-pull split": {
-        "day 1: push": {
+        "push": {
             "barbell bench press": {
                 "sets": 3,
                 "reps": 12,
@@ -17,7 +17,7 @@
                 "rest": 90
             }
         },
-        "day 2: pull": {
+        "pull": {
             "pull-ups": {
                 "sets": 3,
                 "reps": 12,
@@ -34,7 +34,7 @@
                 "rest": 90
             }
         },
-        "day 3: legs": {
+        "legs": {
             "squats": {
                 "sets": 3,
                 "reps": 12,
