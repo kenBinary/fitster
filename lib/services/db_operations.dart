@@ -16,3 +16,16 @@ Future<void> addUserInformationToFirestore({
       FirebaseFirestore.instance.collection('user_information').doc(docId);
   await docUser.set(jsonData);
 }
+
+Future<List<dynamic>> getMuscleGroupById({required String? docId}) async {
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('users');
+  DocumentSnapshot documentSnapshot =
+      await collectionReference.doc(docId).get();
+  if (documentSnapshot.exists) {
+    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+    return data['muscle_group'];
+  } else {
+    return [];
+  }
+}
