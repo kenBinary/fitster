@@ -5,7 +5,7 @@ Future<Map<String, dynamic>> findDocumentById(String workoutSplit) async {
   CollectionReference collectionReference =
       FirebaseFirestore.instance.collection('workout_splits');
   DocumentSnapshot documentSnapshot =
-      await collectionReference.doc('bro_split').get();
+      await collectionReference.doc(workoutSplit).get();
   if (documentSnapshot.exists) {
     return documentSnapshot.data() as Map<String, dynamic>;
   } else {

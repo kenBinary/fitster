@@ -51,3 +51,4 @@ lib/screens/main_demo.dart
 lib/services/service_testing.dart
 lib/services/demo.dart
 lib/data/json_mockups.json
+lib/screens/test.dart
