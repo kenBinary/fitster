@@ -148,3 +148,17 @@ Future<List<dynamic>> getTargetMuscles({required String? docId}) async {
     return [];
   }
 }
+
+Future<Map<String, dynamic>> getUserInformation(
+    {required String? docId}) async {
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('user_information');
+  DocumentSnapshot documentSnapshot =
+      await collectionReference.doc(docId).get();
+  if (documentSnapshot.exists) {
+    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+    return data;
+  } else {
+    return {};
+  }
+}
