@@ -148,8 +148,7 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
                             child: VitalCards(
                               vitalType: 'Age',
                               vitalValue: (value != null && value.isNotEmpty)
-                                  ? value['user_information']['weight']
-                                      .toString()
+                                  ? value['user_information']['age'].toString()
                                   : '',
                             ),
                           ),
@@ -178,10 +177,12 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
                                 vitalType: 'BMI',
                                 vitalValue: (value != null && value.isNotEmpty)
                                     ? calculateBMI(
-                                        height: value['user_information']
-                                            ['height'],
-                                        weight: value['user_information']
-                                            ['weight'])
+                                        height: double.parse(
+                                            value['user_information']
+                                                ['height']),
+                                        weight: double.parse(
+                                            value['user_information']
+                                                ['weight']))
                                     : ''),
                           ),
                         ],
