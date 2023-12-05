@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fitster/models/workout_splits.dart';
+import 'package:fitster/services/workout_plan_builder.dart';
 
 Future<void> addSplitToFirestore({
   required String? docId,
@@ -160,10 +162,10 @@ Future<Map<String, dynamic>> getUserInformation(
     return data;
   } else {
     return {
-      'weight': 0,
+      'weight': '0',
       'fitness_level': 'none',
       'age': 0,
-      'height': 0,
+      'height': '0',
       'fitness_goals': 'none',
       'weekly_burned_calories': {
         'monday': 0,
@@ -176,4 +178,30 @@ Future<Map<String, dynamic>> getUserInformation(
       },
     };
   }
+}
+
+Future<void> createNewWorkoutSplit({
+  required String? docId,
+  required String selectedSplit,
+  required String fitnessLevel,
+  required String fitnessGoal,
+  required String age,
+  required String height,
+  required String weight,
+}) async {
+  WorkoutSplit mySplit = await createWorkoutPlan(selectedSplit);
+  await addSplitToFirestore(
+    docId: docId,
+    jsonData: mySplit.toJson(),
+  );
+  await addUserInformationToFirestore(
+    docId: docId,
+    jsonData: {
+      'fitness_level': fitnessLevel,
+      'fitness_goals': fitnessGoal,
+      'age': age,
+      'height': height,
+      'weight': weight,
+    },
+  );
 }
