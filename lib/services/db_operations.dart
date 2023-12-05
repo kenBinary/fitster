@@ -159,6 +159,21 @@ Future<Map<String, dynamic>> getUserInformation(
     Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
     return data;
   } else {
-    return {};
+    return {
+      'weight': 0,
+      'fitness_level': 'none',
+      'age': 0,
+      'height': 0,
+      'fitness_goals': 'none',
+      'weekly_burned_calories': {
+        'monday': 0,
+        'tuesday': 0,
+        'wednesday': 0,
+        'thursday': 0,
+        'friday': 0,
+        'saturday': 0,
+        'sunday': 0,
+      },
+    };
   }
 }
