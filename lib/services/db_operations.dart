@@ -32,6 +32,11 @@ Future<List<dynamic>> getMuscleGroupById({required String? docId}) async {
   }
 }
 
+Stream<DocumentSnapshot<Map<String, dynamic>>> getMuscleGroupStream(
+    {required String? docId}) {
+  return FirebaseFirestore.instance.collection('users').doc(docId).snapshots();
+}
+
 Future<void> updateExerciseDates({
   required String? docId,
   required Map<String, dynamic> jsonData,
@@ -63,7 +68,6 @@ Map<int, Map<String, int>> repeatVolumeBySchedule(
   int counter = 0;
 
   for (var i = 0; i < myData.keys.length; i++) {
-    // data[i] == value
     if (myData[i]?['reps'] as int != 0 && !hasIterated) {
       pointer.add(myData[i]!);
     }
@@ -142,7 +146,6 @@ Future<List<dynamic>> getTargetMuscles({required String? docId}) async {
       FirebaseFirestore.instance.collection('users');
   DocumentSnapshot documentSnapshot =
       await collectionReference.doc(docId).get();
-  // print(data['workout_split']['target_muscles']);
   if (documentSnapshot.exists) {
     Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
     return data['workout_split']['target_muscles'];
@@ -204,4 +207,90 @@ Future<void> createNewWorkoutSplit({
       'weight': weight,
     },
   );
+}
+
+Future<void> addNewExercise({
+  required String? docId,
+  required String exerciseName,
+  required String reps,
+  required String sets,
+  required String restTime,
+  required String targetGroup,
+}) async {
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('users');
+  DocumentReference documentReference = collectionReference.doc(docId);
+  DocumentSnapshot documentSnapshot = await documentReference.get();
+  if (documentSnapshot.exists) {
+    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+    for (var groupName in data['muscle_group']) {
+      if (groupName['group'] == targetGroup) {
+        groupName['exercises'].add({
+          'sets': int.parse(sets),
+          'reps': int.parse(reps),
+          'rest_time': int.parse(restTime),
+          'name': exerciseName,
+        });
+        break;
+      }
+    }
+    documentReference.update({
+      'muscle_group': data['muscle_group'],
+    });
+  }
+}
+
+Future<void> deleteExercise({
+  required String? docId,
+  required String targetGroup,
+  required int index,
+}) async {
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('users');
+  DocumentReference documentReference = collectionReference.doc(docId);
+  DocumentSnapshot documentSnapshot = await documentReference.get();
+  if (documentSnapshot.exists) {
+    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+    for (var group in data['muscle_group']) {
+      if (group['group'] == targetGroup) {
+        group['exercises'].removeAt(index);
+        break;
+      }
+    }
+    documentReference.update({
+      'muscle_group': data['muscle_group'],
+    });
+  }
+}
+
+Future<void> editExercise({
+  required String? docId,
+  required String exerciseName,
+  required String reps,
+  required String sets,
+  required String restTime,
+  required String targetGroup,
+  required int index,
+}) async {
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('users');
+  DocumentReference documentReference = collectionReference.doc(docId);
+  DocumentSnapshot documentSnapshot = await documentReference.get();
+  if (documentSnapshot.exists) {
+    Map<String, dynamic> data = documentSnapshot.data() as Map<String, dynamic>;
+    for (var groupName in data['muscle_group']) {
+      if (groupName['group'] == targetGroup) {
+        groupName['exercises'][index] = {
+          'sets': int.parse(sets),
+          'reps': int.parse(reps),
+          'rest_time': int.parse(restTime),
+          'name': exerciseName,
+        };
+        break;
+      }
+    }
+    documentReference.update({
+      'muscle_group': data['muscle_group'],
+    });
+  }
 }
