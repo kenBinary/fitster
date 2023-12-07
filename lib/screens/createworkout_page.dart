@@ -179,29 +179,35 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 SplitSelectorButton(
+                  selectedSplit: selectedSplit,
                   imagePath: '../lib/images/C_Logo.png',
                   text: 'Bro Split',
                   setSelectedSplit: () {
                     setState(() {
-                      selectedSplit = 'bro_split';
+                      // selectedSplit = 'bro_split';
+                      selectedSplit = 'Bro Split';
                     });
                   },
                 ),
                 SplitSelectorButton(
+                  selectedSplit: selectedSplit,
                   imagePath: '../lib/images/BS_Logo.png',
                   text: 'Push-Pull-Legs',
                   setSelectedSplit: () {
                     setState(() {
-                      selectedSplit = 'push_pull_legs';
+                      // selectedSplit = 'push_pull_legs';
+                      selectedSplit = 'Push-Pull-Legs';
                     });
                   },
                 ),
                 SplitSelectorButton(
+                  selectedSplit: selectedSplit,
                   imagePath: '../lib/images/FL_Logo.png',
                   text: 'Upper-Lower',
                   setSelectedSplit: () {
                     setState(() {
-                      selectedSplit = 'upper_lower';
+                      // selectedSplit = 'upper_lower';
+                      selectedSplit = 'Upper-Lower';
                     });
                   },
                 ),

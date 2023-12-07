@@ -37,10 +37,12 @@ class SplitSelectorButton extends StatelessWidget {
     required this.imagePath,
     required this.text,
     required this.setSelectedSplit,
+    required this.selectedSplit,
   });
   final String imagePath;
   final String text;
   final Function setSelectedSplit;
+  final String selectedSplit;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +55,11 @@ class SplitSelectorButton extends StatelessWidget {
           child: Container(
             width: 60.0,
             height: 60.0,
-            decoration: const BoxDecoration(
-              color: Color(0xFF9AB8F9),
+            decoration: BoxDecoration(
+              // color: Color(0xFF9AB8F9),
+              color: (selectedSplit == text)
+                  ? const Color(0xfffbfbad)
+                  : const Color(0xFF9AB8F9),
               shape: BoxShape.circle,
             ),
             child: Center(

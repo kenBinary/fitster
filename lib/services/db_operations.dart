@@ -192,6 +192,19 @@ Future<void> createNewWorkoutSplit({
   required String height,
   required String weight,
 }) async {
+  switch (selectedSplit) {
+    case 'Bro Split':
+      selectedSplit = 'bro_split';
+      break;
+    case 'Push-Pull-Legs':
+      selectedSplit = 'push_pull_legs';
+      break;
+    case 'Upper-Lower':
+      selectedSplit = 'upper_lower';
+      break;
+    default:
+      selectedSplit = 'no split';
+  }
   WorkoutSplit mySplit = await createWorkoutPlan(selectedSplit);
   await addSplitToFirestore(
     docId: docId,
