@@ -121,23 +121,23 @@ Future<Map<String, int>> getTrainingVolume({required String? docId}) async {
     }
   };
   List<dynamic> muscleGroups = await getMuscleGroupById(docId: docId);
-
-  for (var i = 0; i < muscleGroups.length; i++) {
-    int totalReps = 0;
-    int totalSets = 0;
-    for (var x = 0; x < muscleGroups[i]['exercises'].length; x++) {
-      totalReps += muscleGroups[i]['exercises'][x]['sets'] as int;
-      totalSets += muscleGroups[i]['exercises'][x]['reps'] as int;
+  if (muscleGroups.isNotEmpty) {
+    for (var i = 0; i < muscleGroups.length; i++) {
+      int totalReps = 0;
+      int totalSets = 0;
+      for (var x = 0; x < muscleGroups[i]['exercises'].length; x++) {
+        totalReps += muscleGroups[i]['exercises'][x]['sets'] as int;
+        totalSets += muscleGroups[i]['exercises'][x]['reps'] as int;
+      }
+      trainingVolume.update(
+          i,
+          (value) => {
+                'reps': totalReps,
+                'sets': totalSets,
+              });
     }
-    trainingVolume.update(
-        i,
-        (value) => {
-              'reps': totalReps,
-              'sets': totalSets,
-            });
+    trainingVolume = repeatVolumeBySchedule(trainingVolume);
   }
-  trainingVolume = repeatVolumeBySchedule(trainingVolume);
-
   return trainingVolume[DateTime.now().weekday - 1] as Map<String, int>;
 }
 

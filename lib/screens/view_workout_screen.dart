@@ -9,36 +9,34 @@ class ViewWorkout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AsyncBuilder(
-        stream:
-            getMuscleGroupStream(docId: FirebaseAuth.instance.currentUser?.uid),
-        waiting: (context) => const Text('Loading...'),
-        builder: (context, snapshot) {
-          Map<String, dynamic>? data = snapshot?.data();
-          return SingleChildScrollView(
-            physics: const ScrollPhysics(),
-            child: ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemCount: (data != null && data.containsKey('muscle_group')
-                  ? data['muscle_group'].length
-                  : 1),
-              itemBuilder: (context, index) {
-                if (data == null) {
-                  return const Text('no created workout plan');
-                }
-                return MuscleGroupSection(
-                  data: data['muscle_group'][index],
-                );
-              },
-            ),
-          );
-        },
-        error: (context, error, stackTrace) => Text('Error! $error'),
-        closed: (context, value) => Text('$value (closed)'),
-      ),
+    return AsyncBuilder(
+      stream:
+          getMuscleGroupStream(docId: FirebaseAuth.instance.currentUser?.uid),
+      waiting: (context) => const Text('Loading...'),
+      builder: (context, snapshot) {
+        Map<String, dynamic>? data = snapshot?.data();
+        return SingleChildScrollView(
+          physics: const ScrollPhysics(),
+          child: ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: (data != null && data.containsKey('muscle_group')
+                ? data['muscle_group'].length
+                : 1),
+            itemBuilder: (context, index) {
+              if (data == null) {
+                return const Text('no created workout plan');
+              }
+              return MuscleGroupSection(
+                data: data['muscle_group'][index],
+              );
+            },
+          ),
+        );
+      },
+      error: (context, error, stackTrace) => Text('Error! $error'),
+      closed: (context, value) => Text('$value (closed)'),
     );
   }
 }
