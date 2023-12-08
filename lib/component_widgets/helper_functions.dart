@@ -16,7 +16,3 @@ String getRandomExerciseCardImage() {
   ];
   return images[random.nextInt(10)];
 }
-
-void main(List<String> args) {
-  print(getRandomExerciseCardImage());
-}
