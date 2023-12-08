@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitster/models/workout_splits.dart';
+import 'package:fitster/services/helper_functions.dart';
 import 'package:fitster/services/workout_plan_builder.dart';
+import 'package:flutter/material.dart';
 
 Future<void> addSplitToFirestore({
   required String? docId,
@@ -60,7 +62,8 @@ Future<List<dynamic>> getDaysExercised({required String? docId}) async {
 }
 
 Map<int, Map<String, int>> repeatVolumeBySchedule(
-    Map<int, Map<String, int>> data) {
+  Map<int, Map<String, int>> data,
+) {
   Map<int, Map<String, int>> myData = data;
   List<Map<String, int>> pointer = [];
   bool hasIterated = false;
@@ -306,4 +309,92 @@ Future<void> editExercise({
       'muscle_group': data['muscle_group'],
     });
   }
+}
+
+Future<String> getCurrentMuscleGroup({
+  required String? docId,
+}) async {
+  List<dynamic> muscleGroups = await getMuscleGroupById(docId: docId);
+  List<String> groups = [];
+  int counter = 0;
+  if (muscleGroups.isNotEmpty) {
+    for (var i = 0; i < 7; i++) {
+      if (counter < muscleGroups.length) {
+        groups.add(muscleGroups[counter]['group']);
+        counter++;
+      } else {
+        groups.add('');
+        counter = 0;
+      }
+    }
+    return (groups[DateTime.now().weekday - 1]);
+  } else {
+    return '';
+  }
+}
+
+Future<void> addCaloriesBurned({
+  required String? docId,
+  required int totalReps,
+  required String exerciseName,
+}) async {
+  CollectionReference colReference =
+      FirebaseFirestore.instance.collection('burned_calories');
+  DocumentReference docReference = colReference.doc(docId);
+  DocumentSnapshot docSnapshot = await docReference.get();
+
+  double caloriesBurned = totalCaloriesBurned(
+    totalReps: totalReps,
+    weight: double.parse('70'),
+  );
+
+  DateTime timeNow = DateTime.now();
+
+  String currentDate = '${timeNow.year}-${timeNow.month}-${timeNow.day}';
+
+  if (docSnapshot.exists) {
+    Map<dynamic, dynamic> data = docSnapshot.data() as Map<dynamic, dynamic>;
+    if (data.containsKey(currentDate)) {
+      if (!data[currentDate]['exercises'].contains(exerciseName)) {
+        data[currentDate]['exercises'].add(exerciseName);
+        data[currentDate]['calories_burned'] += caloriesBurned;
+      } else {
+        data[currentDate]['exercises'].remove(exerciseName);
+        data[currentDate]['calories_burned'] -= caloriesBurned;
+      }
+    }
+    docReference.update({
+      currentDate: data[currentDate],
+    });
+  } else {
+    docReference.set(
+      {
+        currentDate.toString(): {
+          'calories_burned': caloriesBurned,
+          'exercises': [exerciseName],
+        }
+      },
+    );
+  }
+}
+
+Future<bool> isExerciseFinished({
+  required String? docId,
+  required String exerciseName,
+}) async {
+  CollectionReference colReference =
+      FirebaseFirestore.instance.collection('burned_calories');
+  DocumentReference docReference = colReference.doc(docId);
+  DocumentSnapshot docSnapshot = await docReference.get();
+  DateTime timeNow = DateTime.now();
+
+  String currentDate = '${timeNow.year}-${timeNow.month}-${timeNow.day}';
+
+  if (docSnapshot.exists) {
+    Map<dynamic, dynamic> data = docSnapshot.data() as Map<dynamic, dynamic>;
+    if (data.containsKey(currentDate)) {
+      return data[currentDate]['exercises'].contains(exerciseName);
+    }
+  }
+  return false;
 }

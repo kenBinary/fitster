@@ -58,6 +58,80 @@ class GroupIndicator extends StatelessWidget {
   }
 }
 
+class ExerciseCardImage extends StatefulWidget {
+  const ExerciseCardImage({
+    super.key,
+    required this.groupName,
+    required this.totalReps,
+    required this.exerciseName,
+  });
+  final String groupName;
+  final String exerciseName;
+  final int totalReps;
+  @override
+  State<ExerciseCardImage> createState() => _ExerciseCardImageState();
+}
+
+class _ExerciseCardImageState extends State<ExerciseCardImage> {
+  String currentGroup = '';
+  bool isDone = false;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentMuscleGroup(docId: FirebaseAuth.instance.currentUser?.uid)
+        .then((value) {
+      setState(() {
+        currentGroup = value;
+      });
+    });
+    isExerciseFinished(
+            docId: FirebaseAuth.instance.currentUser?.uid,
+            exerciseName: widget.exerciseName)
+        .then((value) {
+      if (value) {
+        setState(() {
+          isDone = value;
+        });
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    if (widget.groupName == currentGroup) {
+      return GestureDetector(
+        onTap: () {
+          addCaloriesBurned(
+            docId: FirebaseAuth.instance.currentUser?.uid,
+            totalReps: widget.totalReps,
+            exerciseName: widget.exerciseName,
+          );
+          setState(() {
+            isDone = !isDone;
+          });
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: (isDone) ? Colors.green : Colors.redAccent,
+              width: 3,
+            ),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: Image.asset(
+            '../lib/images/Push_Person.png',
+          ),
+        ),
+      );
+    } else {
+      return Image.asset(
+        '../lib/images/Push_Person.png',
+      );
+    }
+  }
+}
+
 class ExerciseCard extends StatelessWidget {
   const ExerciseCard({
     super.key,
@@ -68,6 +142,7 @@ class ExerciseCard extends StatelessWidget {
     required this.onEdit,
     required this.onDelete,
     required this.index,
+    required this.groupName,
   });
   final String exerciseName;
   final String setNumber;
@@ -76,6 +151,7 @@ class ExerciseCard extends StatelessWidget {
   final Function onEdit;
   final Function onDelete;
   final int index;
+  final String groupName;
 
   @override
   Widget build(BuildContext context) {
@@ -139,8 +215,10 @@ class ExerciseCard extends StatelessWidget {
               ),
               Expanded(
                 flex: 4,
-                child: Image.asset(
-                  '../lib/images/Push_Person.png',
+                child: ExerciseCardImage(
+                  groupName: groupName,
+                  totalReps: int.parse(repNumber) * int.parse(setNumber),
+                  exerciseName: exerciseName,
                 ),
               ),
               Expanded(
@@ -262,7 +340,6 @@ class MuscleGroupSection extends StatelessWidget {
       },
     ),
   ];
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -296,6 +373,7 @@ class MuscleGroupSection extends StatelessWidget {
           itemCount: data['exercises'].length,
           itemBuilder: (context, index) {
             return ExerciseCard(
+              groupName: data['group'],
               index: index,
               exerciseName: data['exercises'][index]['name'] as String,
               setNumber: data['exercises'][index]['sets'].toString(),
