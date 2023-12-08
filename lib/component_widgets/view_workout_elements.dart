@@ -1,5 +1,6 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitster/component_widgets/helper_functions.dart';
 import 'package:fitster/services/db_operations.dart';
 import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
@@ -120,13 +121,13 @@ class _ExerciseCardImageState extends State<ExerciseCardImage> {
             borderRadius: BorderRadius.circular(4),
           ),
           child: Image.asset(
-            '../lib/images/Push_Person.png',
+            getRandomExerciseCardImage(),
           ),
         ),
       );
     } else {
       return Image.asset(
-        '../lib/images/Push_Person.png',
+        getRandomExerciseCardImage(),
       );
     }
   }

@@ -86,6 +86,17 @@ flutter:
     - lib/images/Pull_Person.png
     - lib/images/Legs_Person.png
     - lib/images/fitster-icon.png
+    - lib/images/bro_split.png
+    - lib/images/ExerciseCardImages/exercise_1.png
+    - lib/images/ExerciseCardImages/exercise_2.png
+    - lib/images/ExerciseCardImages/exercise_3.png
+    - lib/images/ExerciseCardImages/exercise_4.png
+    - lib/images/ExerciseCardImages/exercise_5.png
+    - lib/images/ExerciseCardImages/exercise_6.png
+    - lib/images/ExerciseCardImages/exercise_7.png
+    - lib/images/ExerciseCardImages/exercise_8.png
+    - lib/images/ExerciseCardImages/exercise_9.png
+    - lib/images/ExerciseCardImages/exercise_10.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

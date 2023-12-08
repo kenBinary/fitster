@@ -180,7 +180,7 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
               children: [
                 SplitSelectorButton(
                   selectedSplit: selectedSplit,
-                  imagePath: '../lib/images/C_Logo.png',
+                  imagePath: '../lib/images/bro_split.png',
                   text: 'Bro Split',
                   setSelectedSplit: () {
                     setState(() {
