@@ -34,9 +34,12 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
         await getDaysExercised(docId: FirebaseAuth.instance.currentUser?.uid);
     Map<String, dynamic> userInformation =
         await getUserInformation(docId: FirebaseAuth.instance.currentUser?.uid);
+    Map<String, dynamic> weeklyCaloriesBurned = await getCaloriesBurnedThisWeek(
+        docId: FirebaseAuth.instance.currentUser?.uid);
     return {
       'days_exercised': daysExercised.length,
       'user_information': userInformation,
+      'weekly_calories_burned': weeklyCaloriesBurned,
     };
   }
 
@@ -226,44 +229,50 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
                     child: DChartBarO(
                       groupList: [
                         OrdinalGroup(
+                          color: HexColor('#9AB8F9'),
                           id: '1',
                           data: [
                             OrdinalData(
                               domain: 'Mon',
-                              measure: getBurnedCalories(
-                                initialData: value,
-                                day: 'monday',
-                              ),
+                              measure: (value != null)
+                                  ? value['weekly_calories_burned']['1']
+                                  : 0,
                             ),
                             OrdinalData(
                               domain: 'Tue',
-                              measure: getBurnedCalories(
-                                  initialData: value, day: 'tuesday'),
+                              measure: (value != null)
+                                  ? value['weekly_calories_burned']['2']
+                                  : 0,
                             ),
                             OrdinalData(
                               domain: 'Wed',
-                              measure: getBurnedCalories(
-                                  initialData: value, day: 'wednesday'),
+                              measure: (value != null)
+                                  ? value['weekly_calories_burned']['3']
+                                  : 0,
                             ),
                             OrdinalData(
                               domain: 'Thu',
-                              measure: getBurnedCalories(
-                                  initialData: value, day: 'thursday'),
+                              measure: (value != null)
+                                  ? value['weekly_calories_burned']['4']
+                                  : 0,
                             ),
                             OrdinalData(
-                              domain: 'Frid',
-                              measure: getBurnedCalories(
-                                  initialData: value, day: 'friday'),
+                              domain: 'Fri',
+                              measure: (value != null)
+                                  ? value['weekly_calories_burned']['5']
+                                  : 0,
                             ),
                             OrdinalData(
                               domain: 'Sat',
-                              measure: getBurnedCalories(
-                                  initialData: value, day: 'saturday'),
+                              measure: (value != null)
+                                  ? value['weekly_calories_burned']['6']
+                                  : 0,
                             ),
                             OrdinalData(
                               domain: 'Sun',
-                              measure: getBurnedCalories(
-                                  initialData: value, day: 'sunday'),
+                              measure: (value != null)
+                                  ? value['weekly_calories_burned']['7']
+                                  : 0,
                             ),
                           ],
                         ),

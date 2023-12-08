@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fitster/models/workout_splits.dart';
 import 'package:fitster/services/helper_functions.dart';
 import 'package:fitster/services/workout_plan_builder.dart';
-import 'package:flutter/material.dart';
 
 Future<void> addSplitToFirestore({
   required String? docId,
@@ -397,4 +396,36 @@ Future<bool> isExerciseFinished({
     }
   }
   return false;
+}
+
+Future<Map<String, dynamic>> getCaloriesBurnedThisWeek({
+  required String? docId,
+}) async {
+  CollectionReference colReference =
+      FirebaseFirestore.instance.collection('burned_calories');
+  DocumentReference docReference = colReference.doc(docId);
+  DocumentSnapshot docSnapshot = await docReference.get();
+
+  Map<String, dynamic> weeklyBurnedCalories = {
+    '1': 0,
+    '2': 0,
+    '3': 0,
+    '4': 0,
+    '5': 0,
+    '6': 0,
+    '7': 0,
+  };
+
+  if (docSnapshot.exists) {
+    List<String> currentWeek = getCurrentWeek();
+    Map<String, dynamic> data = docSnapshot.data() as Map<String, dynamic>;
+    for (String date in data.keys.toList()) {
+      if (currentWeek.contains(date)) {
+        int weekDate = DateTime.parse(formatDateString(date)).weekday;
+        weeklyBurnedCalories[weekDate.toString()] =
+            data[date]['calories_burned'];
+      }
+    }
+  }
+  return weeklyBurnedCalories;
 }

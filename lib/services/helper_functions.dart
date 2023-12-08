@@ -22,3 +22,26 @@ double totalCaloriesBurned({
   double metValue = getMetValue(totalReps: totalReps);
   return caloriesBurnedPerMinute(metValue: metValue, weight: weight) * 5;
 }
+
+List<String> getCurrentWeek() {
+  List<String> week = [];
+  DateTime currentDay = DateTime.now();
+  for (var i = 1; i <= 7; i++) {
+    DateTime date =
+        DateTime.now().subtract(Duration(days: currentDay.weekday - i));
+    week.add('${date.year}-${date.month}-${date.day}');
+  }
+  return week;
+}
+
+String formatDateString(String date) {
+  String newString = '';
+  final x = (date.split('-')).map((element) {
+    if (element.length == 1) {
+      return '0$element';
+    }
+    return element;
+  }).toList();
+  newString = x.join('-');
+  return newString;
+}
