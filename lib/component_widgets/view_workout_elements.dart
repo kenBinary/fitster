@@ -1,7 +1,11 @@
+import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitster/services/db_operations.dart';
 import 'package:flutter/material.dart';
 import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:gap/gap.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:widget_circular_animator/widget_circular_animator.dart';
 
 class GroupIndicator extends StatelessWidget {
   const GroupIndicator({
@@ -395,6 +399,41 @@ class MuscleGroupSection extends StatelessWidget {
             );
           },
         )
+      ],
+    );
+  }
+}
+
+class NoWorkoutPlan extends StatelessWidget {
+  const NoWorkoutPlan({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(
+          'Create a workout plan to view here',
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const Gap(20),
+        WidgetCircularAnimator(
+          innerColor: HexColor('#0C4ACF'),
+          outerColor: HexColor('#020A1D'),
+          child: CircularProfileAvatar(
+            '',
+            borderColor: HexColor('#9AB8F9'),
+            borderWidth: 3,
+            elevation: 5,
+            radius: 90,
+            child: Image.asset(
+              '../lib/images/fitster-icon.png',
+            ),
+          ),
+        ),
       ],
     );
   }

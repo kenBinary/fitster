@@ -384,6 +384,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
+  logo_n_spinner:
+    dependency: "direct main"
+    description:
+      name: logo_n_spinner
+      sha256: d37b6dad0cd23f35e6f02e0d0be167c3721ada3a64939eb34269f27f25d72e13
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.1.4"
   macos_ui:
     dependency: transitive
     description:

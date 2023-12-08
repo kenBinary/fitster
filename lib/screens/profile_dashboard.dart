@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:logo_n_spinner/logo_n_spinner.dart';
 import 'package:widget_circular_animator/widget_circular_animator.dart';
 import 'package:d_chart/d_chart.dart';
 
@@ -273,7 +274,16 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
               ),
             );
           },
-          waiting: (context) => const Text('loading'),
+          waiting: (context) {
+            return Center(
+              child: LogoandSpinner(
+                imageAssets: '../lib/images/fitster-icon.png',
+                reverse: true,
+                arcColor: HexColor('#0C4ACF'),
+                spinSpeed: const Duration(milliseconds: 500),
+              ),
+            );
+          },
           error: (context, error, stackTrace) => Text('Error! $error')),
     );
   }

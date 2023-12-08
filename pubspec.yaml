@@ -48,6 +48,7 @@ dependencies:
   fast_snackbar: ^0.0.2
   top_snackbar_flutter: ^3.1.0
   adaptive_dialog: ^1.10.1
+  logo_n_spinner: ^0.1.4
 
 dev_dependencies:
   flutter_test:
@@ -74,7 +75,6 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - lib/images/Fitser_Logo.png
     - lib/images/G_logo.png
     - lib/images/X_logo.png
     - lib/images/E_logo.png
@@ -85,6 +85,7 @@ flutter:
     - lib/images/R_Person.jpg
     - lib/images/Pull_Person.png
     - lib/images/Legs_Person.png
+    - lib/images/fitster-icon.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

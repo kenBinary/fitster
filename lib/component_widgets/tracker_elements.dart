@@ -53,16 +53,14 @@ class VolumeCard extends StatelessWidget {
   final String volumeValue;
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Card(
-        color: HexColor('#9AB8F9'),
-        child: Center(
-          child: Text(
-            '$volumeValue $volumeType',
-            style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
+    return Card(
+      color: HexColor('#9AB8F9'),
+      child: Center(
+        child: Text(
+          '$volumeValue $volumeType',
+          style: const TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

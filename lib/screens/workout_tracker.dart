@@ -5,6 +5,7 @@ import 'package:fitster/services/db_operations.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:logo_n_spinner/logo_n_spinner.dart';
 
 class WorkoutTracker extends StatefulWidget {
   const WorkoutTracker({super.key});
@@ -31,7 +32,16 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
       padding: const EdgeInsets.all(8.0),
       child: AsyncBuilder(
         future: initializeDataSets(),
-        waiting: (context) => const Text('Loading...'),
+        waiting: (context) {
+          return Center(
+            child: LogoandSpinner(
+              imageAssets: '../lib/images/fitster-icon.png',
+              reverse: true,
+              arcColor: HexColor('#0C4ACF'),
+              spinSpeed: const Duration(milliseconds: 500),
+            ),
+          );
+        },
         builder: (context, value) {
           return SingleChildScrollView(
             scrollDirection: Axis.vertical,
@@ -73,18 +83,24 @@ class _WorkoutTrackerState extends State<WorkoutTracker> {
                       Expanded(
                         child: Row(
                           children: [
-                            VolumeCard(
-                              volumeType: 'Sets',
-                              volumeValue: (value != null)
-                                  ? value['training_volume']['reps'].toString()
-                                  : '',
+                            Expanded(
+                              child: VolumeCard(
+                                volumeType: 'Sets',
+                                volumeValue: (value != null)
+                                    ? value['training_volume']['reps']
+                                        .toString()
+                                    : '',
+                              ),
                             ),
                             const Gap(10),
-                            VolumeCard(
-                              volumeType: 'Reps',
-                              volumeValue: (value != null)
-                                  ? value['training_volume']['sets'].toString()
-                                  : '',
+                            Expanded(
+                              child: VolumeCard(
+                                volumeType: 'Reps',
+                                volumeValue: (value != null)
+                                    ? value['training_volume']['sets']
+                                        .toString()
+                                    : '',
+                              ),
                             ),
                           ],
                         ),

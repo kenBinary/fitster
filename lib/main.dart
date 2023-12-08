@@ -6,6 +6,7 @@ import 'package:fitster/screens/view_workout_screen.dart';
 import 'package:fitster/screens/workout_tracker.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -72,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: HexColor('#0C4ACF'),
         centerTitle: true,
         title: Text('Hello, $displayName'),
         actions: [
@@ -89,14 +91,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
-            const DrawerHeader(
+            DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.blue,
+                color: HexColor('#9AB8F9'),
               ),
-              child: Text('Profile'),
+              child: Image.asset(
+                '../lib/images/fitster-icon.png',
+              ),
             ),
             ListTile(
-              title: const Text('Dashboard'),
+              title: const Text(
+                'Dashboard',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               selected: _selectedWidget == 0,
               onTap: () {
                 _onItemTapped(0);
@@ -105,7 +115,13 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: const Text('Create Plan'),
+              title: const Text(
+                'Create Plan',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               selected: _selectedWidget == 1,
               onTap: () {
                 _onItemTapped(1);
@@ -114,7 +130,13 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: const Text('View Plan'),
+              title: const Text(
+                'View Plan',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               selected: _selectedWidget == 2,
               onTap: () {
                 _onItemTapped(2);
@@ -123,7 +145,13 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             ListTile(
-              title: const Text('Tracker'),
+              title: const Text(
+                'Tracker',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
               selected: _selectedWidget == 3,
               onTap: () {
                 _onItemTapped(3);

@@ -184,7 +184,6 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
                   text: 'Bro Split',
                   setSelectedSplit: () {
                     setState(() {
-                      // selectedSplit = 'bro_split';
                       selectedSplit = 'Bro Split';
                     });
                   },
@@ -195,7 +194,6 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
                   text: 'Push-Pull-Legs',
                   setSelectedSplit: () {
                     setState(() {
-                      // selectedSplit = 'push_pull_legs';
                       selectedSplit = 'Push-Pull-Legs';
                     });
                   },
@@ -206,7 +204,6 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
                   text: 'Upper-Lower',
                   setSelectedSplit: () {
                     setState(() {
-                      // selectedSplit = 'upper_lower';
                       selectedSplit = 'Upper-Lower';
                     });
                   },

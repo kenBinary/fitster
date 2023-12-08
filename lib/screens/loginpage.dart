@@ -30,7 +30,7 @@ class LoginPage extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Image.asset(
-                '../lib/images/Fitser_Logo.png',
+                '../lib/images/fitster-icon.png',
               ),
             ),
             const Padding(
