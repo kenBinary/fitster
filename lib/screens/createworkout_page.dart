@@ -25,7 +25,7 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
   final _formKey = GlobalKey<FormState>();
   String fitnessGoal = 'Lose Weight';
   String fitnessLevel = 'Beginner';
-  String selectedSplit = 'bro_split';
+  String selectedSplit = 'Bro Split';
 
   MyTextFormField ageField = MyTextFormField(
     validatorCallback: (value) {

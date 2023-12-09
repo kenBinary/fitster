@@ -1,4 +1,5 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
+import 'package:fast_snackbar/fast_snackbar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitster/component_widgets/helper_functions.dart';
 import 'package:fitster/services/db_operations.dart';
@@ -108,6 +109,17 @@ class _ExerciseCardImageState extends State<ExerciseCardImage> {
             totalReps: widget.totalReps,
             exerciseName: widget.exerciseName,
           );
+          if (isDone) {
+            context.showFastSnackbar(
+              'Exercise Unfinished',
+              color: TypeFastSnackbar.error,
+            );
+          } else {
+            context.showFastSnackbar(
+              'Exercise Finished',
+              color: TypeFastSnackbar.success,
+            );
+          }
           setState(() {
             isDone = !isDone;
           });
