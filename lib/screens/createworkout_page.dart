@@ -180,7 +180,7 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
               children: [
                 SplitSelectorButton(
                   selectedSplit: selectedSplit,
-                  imagePath: '../lib/images/bro_split.png',
+                  imagePath: 'assets/images/bro_split.png',
                   text: 'Bro Split',
                   setSelectedSplit: () {
                     setState(() {
@@ -190,7 +190,7 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
                 ),
                 SplitSelectorButton(
                   selectedSplit: selectedSplit,
-                  imagePath: '../lib/images/BS_Logo.png',
+                  imagePath: 'assets/images/BS_Logo.png',
                   text: 'Push-Pull-Legs',
                   setSelectedSplit: () {
                     setState(() {
@@ -200,7 +200,7 @@ class _CreateWorkoutPageState extends State<CreateWorkoutPage> {
                 ),
                 SplitSelectorButton(
                   selectedSplit: selectedSplit,
-                  imagePath: '../lib/images/FL_Logo.png',
+                  imagePath: 'assets/images/FL_Logo.png',
                   text: 'Upper-Lower',
                   setSelectedSplit: () {
                     setState(() {

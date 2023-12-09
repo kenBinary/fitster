@@ -83,7 +83,7 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
                         elevation: 5,
                         radius: 90,
                         child: Image.asset(
-                          '../lib/images/Push_Person.png',
+                          'assets/images/profile-image.png',
                         ),
                       ),
                     ),
@@ -286,7 +286,7 @@ class _ProfileDashboardState extends State<ProfileDashboard> {
           waiting: (context) {
             return Center(
               child: LogoandSpinner(
-                imageAssets: '../lib/images/fitster-icon.png',
+                imageAssets: 'assets/images/fitster-icon.png',
                 reverse: true,
                 arcColor: HexColor('#0C4ACF'),
                 spinSpeed: const Duration(milliseconds: 500),

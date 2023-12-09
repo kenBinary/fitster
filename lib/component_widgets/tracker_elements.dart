@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fitster/component_widgets/helper_functions.dart';
 import 'package:fitster/services/db_operations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_heatmap_calendar/flutter_heatmap_calendar.dart';
@@ -19,9 +20,14 @@ class TargetMuscleCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Expanded(
+            Expanded(
               flex: 2,
-              child: Icon(Icons.star),
+              child: Padding(
+                padding: const EdgeInsets.all(5),
+                child: Image.asset(
+                  getRandomMuscleGroupImage(),
+                ),
+              ),
             ),
             Expanded(
               flex: 3,

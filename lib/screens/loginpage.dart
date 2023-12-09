@@ -23,15 +23,14 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Padding(
         padding: const EdgeInsets.all(8),
         child: Column(
           children: [
             Expanded(
               flex: 3,
-              child: Image.asset(
-                '../lib/images/fitster-icon.png',
-              ),
+              child: Image.asset('assets/images/fitster-icon.png'),
             ),
             const Padding(
               padding: EdgeInsets.all(1.0),
@@ -110,7 +109,7 @@ class LoginPage extends StatelessWidget {
                     }
                   });
                 },
-                imagePath: '../lib/images/G_Logo.png',
+                imagePath: 'assets/images/email-logo.png',
                 buttonText: 'Sign In With Email',
                 buttonColor: Colors.white,
                 textColor: Colors.black,
@@ -120,7 +119,7 @@ class LoginPage extends StatelessWidget {
             Expanded(
               child: MyInputButton(
                 onPressedCallback: () {},
-                imagePath: '../lib/images/G_Logo.png',
+                imagePath: 'assets/images/google-logo.png',
                 buttonText: 'Sign In With Google',
                 buttonColor: Colors.white,
                 textColor: Colors.black,
@@ -129,7 +128,7 @@ class LoginPage extends StatelessWidget {
             Expanded(
               child: MyInputButton(
                 onPressedCallback: () {},
-                imagePath: '../lib/images/X_Logo.png',
+                imagePath: 'assets/images/x-logo.png',
                 buttonText: 'Sign In With Twitter',
                 buttonColor: Colors.black,
                 textColor: Colors.white,
@@ -138,7 +137,7 @@ class LoginPage extends StatelessWidget {
             Expanded(
               child: MyInputButton(
                 onPressedCallback: () {},
-                imagePath: '../lib/images/E_Logo.png',
+                imagePath: 'assets/images/github-logo.png',
                 buttonText: 'Sign In With GitHub',
                 buttonColor: Colors.white,
                 textColor: Colors.black,
@@ -147,7 +146,7 @@ class LoginPage extends StatelessWidget {
             Expanded(
               child: MyInputButton(
                 onPressedCallback: () {},
-                imagePath: '../lib/images/F_Logo.png',
+                imagePath: 'assets/images/facebook-logo.png',
                 buttonText: 'Sign In With Facebook',
                 buttonColor: Colors.blueAccent,
                 textColor: Colors.white,

@@ -17,7 +17,7 @@ class ViewWorkout extends StatelessWidget {
       waiting: (context) {
         return Center(
           child: LogoandSpinner(
-            imageAssets: '../lib/images/fitster-icon.png',
+            imageAssets: 'assets/images/fitster-icon.png',
             reverse: true,
             arcColor: HexColor('#0C4ACF'),
             spinSpeed: const Duration(milliseconds: 500),

@@ -215,7 +215,7 @@ class ExerciseCard extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 4,
+                flex: 3,
                 child: ExerciseCardImage(
                   groupName: groupName,
                   totalReps: int.parse(repNumber) * int.parse(setNumber),
@@ -245,7 +245,6 @@ class ExerciseCard extends StatelessWidget {
                           ),
                         ),
                         height: 30,
-                        width: 50,
                         child: const Align(
                           alignment: Alignment.center,
                           child: Text('Edit'),
@@ -265,7 +264,6 @@ class ExerciseCard extends StatelessWidget {
                           ),
                         ),
                         height: 30,
-                        width: 50,
                         child: const Align(
                           alignment: Alignment.center,
                           child: Text('Delete'),
@@ -509,7 +507,7 @@ class NoWorkoutPlan extends StatelessWidget {
             elevation: 5,
             radius: 90,
             child: Image.asset(
-              '../lib/images/fitster-icon.png',
+              'assets/images/fitster-icon.png',
             ),
           ),
         ),

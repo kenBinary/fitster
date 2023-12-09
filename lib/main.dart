@@ -10,6 +10,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -72,6 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: HexColor('#0C4ACF'),
         centerTitle: true,
@@ -96,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: HexColor('#9AB8F9'),
               ),
               child: Image.asset(
-                '../lib/images/fitster-icon.png',
+                'assets/images/fitster-icon.png',
               ),
             ),
             ListTile(

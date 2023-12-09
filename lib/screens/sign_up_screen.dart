@@ -47,6 +47,7 @@ class SignUpPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Form(
         key: _formKey,
         child: Padding(
@@ -56,7 +57,7 @@ class SignUpPage extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Image.asset(
-                  '../lib/images/fitster-icon.png',
+                  'assets/images/fitster-icon.png',
                 ),
               ),
               const Padding(
@@ -160,7 +161,7 @@ class SignUpPage extends StatelessWidget {
                       );
                     }
                   },
-                  imagePath: '../lib/images/G_Logo.png',
+                  imagePath: 'assets/images/email-logo.png',
                   buttonText: 'Sign Up',
                   buttonColor: Colors.white,
                   textColor: Colors.black,
@@ -187,7 +188,7 @@ class SignUpPage extends StatelessWidget {
                   onPressedCallback: () {
                     Navigator.pop(context);
                   },
-                  imagePath: '../lib/images/G_Logo.png',
+                  imagePath: 'assets/images/back.png',
                   buttonText: 'Go Back To Login Screen',
                   buttonColor: Colors.white,
                   textColor: Colors.black,
