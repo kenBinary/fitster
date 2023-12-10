@@ -1,9 +1,12 @@
+import 'package:adaptive_dialog/adaptive_dialog.dart';
+import 'package:draggable_fab/draggable_fab.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fitster/screens/createworkout_page.dart';
 import 'package:fitster/screens/loginpage.dart';
 import 'package:fitster/screens/profile_dashboard.dart';
 import 'package:fitster/screens/view_workout_screen.dart';
 import 'package:fitster/screens/workout_tracker.dart';
+import 'package:fitster/services/db_operations.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -74,6 +77,28 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      floatingActionButton: (_selectedWidget == 2)
+          ? DraggableFab(
+              child: FloatingActionButton.small(
+                onPressed: () {
+                  showOkCancelAlertDialog(
+                    context: context,
+                    title: 'Delete Workout Plan',
+                    message:
+                        'Are You Sure you want to delete this workout plan?',
+                    okLabel: 'delete',
+                  ).then((value) {
+                    if (value.index == 0) {
+                      deleteWorkoutPlan(
+                        docId: FirebaseAuth.instance.currentUser?.uid,
+                      );
+                    }
+                  });
+                },
+                child: const Icon(Icons.delete),
+              ),
+            )
+          : null,
       appBar: AppBar(
         backgroundColor: HexColor('#0C4ACF'),
         centerTitle: true,

@@ -429,3 +429,15 @@ Future<Map<String, dynamic>> getCaloriesBurnedThisWeek({
   }
   return weeklyBurnedCalories;
 }
+
+Future<void> deleteWorkoutPlan({
+  required String? docId,
+}) async {
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('users');
+  DocumentReference documentReference = collectionReference.doc(docId);
+  DocumentSnapshot documentSnapshot = await documentReference.get();
+  if (documentSnapshot.exists) {
+    documentReference.delete();
+  }
+}

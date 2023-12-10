@@ -49,6 +49,7 @@ dependencies:
   top_snackbar_flutter: ^3.1.0
   adaptive_dialog: ^1.10.1
   logo_n_spinner: ^0.1.4
+  draggable_fab: ^0.1.4
 
 dev_dependencies:
   flutter_test:
